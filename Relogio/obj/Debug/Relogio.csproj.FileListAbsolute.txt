@@ -1,0 +1,10 @@
+C:\Users\corag\source\repos\Relogio\bin\Debug\Relogio.exe.config
+C:\Users\corag\source\repos\Relogio\bin\Debug\Relogio.exe
+C:\Users\corag\source\repos\Relogio\bin\Debug\Relogio.pdb
+C:\Users\corag\source\repos\Relogio\obj\Debug\Relogio.csproj.AssemblyReference.cache
+C:\Users\corag\source\repos\Relogio\obj\Debug\Relogio.Form1.resources
+C:\Users\corag\source\repos\Relogio\obj\Debug\Relogio.Properties.Resources.resources
+C:\Users\corag\source\repos\Relogio\obj\Debug\Relogio.csproj.GenerateResource.cache
+C:\Users\corag\source\repos\Relogio\obj\Debug\Relogio.csproj.CoreCompileInputs.cache
+C:\Users\corag\source\repos\Relogio\obj\Debug\Relogio.exe
+C:\Users\corag\source\repos\Relogio\obj\Debug\Relogio.pdb
