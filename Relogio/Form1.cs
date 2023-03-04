@@ -155,7 +155,7 @@ namespace Relogio
 
             this.Text = $"X:{ponteiroX} | Y:{ponteiroY}";
 
-            theta = (segundoAtual / 60.0) * 2 * Math.PI - 3 * Math.PI / 2;
+            theta = (segundoAtual / 60.0) * 2 * Math.PI - Math.PI / 2;
             ponteiroX = Convert.ToInt32(xCenter + L * Math.Cos(theta));
             ponteiroY = Convert.ToInt32(yCenter + L * Math.Sin(theta));
 
