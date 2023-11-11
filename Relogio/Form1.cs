@@ -13,7 +13,8 @@ namespace Relogio
     public partial class Form1 : Form
     {
 
-        Graphics graphics = null;
+        private Bitmap offScreenBitmap1;
+        Graphics offScreenGraphics = null;
         Pen penMarcadorHora = new Pen(Color.Black);
         Pen penMarcadorHoraDiagonal = new Pen(Color.Black);
         SolidBrush brush = new SolidBrush(Color.DarkOrange);
@@ -43,9 +44,9 @@ namespace Relogio
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            graphics = e.Graphics;
+            //offScreenGraphics = this.CreateGraphics();//e.Graphics;
             //
-            Draw();
+            //backgroundWorker1.RunWorkerAsync();
         }
 
         private void Draw()
@@ -53,53 +54,59 @@ namespace Relogio
             int tamanhoD01 = 930;
             int tamanhoD02 = 85;
             //
-            graphics.FillEllipse(brush, (this.Width / 2) - (tamanhoD01 - ((tamanhoD01 / 2) - 8)), (this.Height / 2) - (tamanhoD01 - ((tamanhoD01 / 2) - 7)), tamanhoD01, tamanhoD01);
-            graphics.FillEllipse(brush, (this.Width / 2) - (tamanhoD02 - ((tamanhoD02 / 2) - 8)), (this.Height / 2) - (tamanhoD02 - ((tamanhoD02 / 2) - 7)), tamanhoD02, tamanhoD02);
+            offScreenGraphics.FillEllipse(brush, (this.Width / 2) - (tamanhoD01 - ((tamanhoD01 / 2) - 8)), (this.Height / 2) - (tamanhoD01 - ((tamanhoD01 / 2) - 7)), tamanhoD01, tamanhoD01);
+            offScreenGraphics.FillEllipse(brush, (this.Width / 2) - (tamanhoD02 - ((tamanhoD02 / 2) - 8)), (this.Height / 2) - (tamanhoD02 - ((tamanhoD02 / 2) - 7)), tamanhoD02, tamanhoD02);
             //
             Font font = new Font("Arial", 26, FontStyle.Regular);
             Brush brush_ = Brushes.White;
-            graphics.DrawString("FOR ALL TIME. ALWAYS", font, brush_, xCenter - 206, 10);
+            offScreenGraphics.DrawString("FOR ALL TIME. ALWAYS", font, brush_, xCenter - 206, 10);
             penMarcadorHora.Width = 30;
             penMarcadorHoraDiagonal.Width = 10;
-            graphics.DrawLine(penMarcadorHora, 959, 56, 959, 126);//MARCAÇÃO 12 HORAS
-            graphics.DrawLine(penMarcadorHora, 1349, 516, 1419, 516);//MARCAÇÃO 15 HORAS
-            graphics.DrawLine(penMarcadorHora, 959, 906, 959, 976);//MARCAÇÃO 18 HORAS
-            graphics.DrawLine(penMarcadorHora, 499, 516, 569, 516);//MARCAÇÃO 21 HORAS
-            graphics.DrawLine(penMarcadorHoraDiagonal, 1154, 179, 1189, 118);//MARCAÇÃO 13 HORAS
-            graphics.DrawLine(penMarcadorHoraDiagonal, 1296, 321, 1357, 286);//MARCAÇÃO 14 HORAS
-            graphics.DrawLine(penMarcadorHoraDiagonal, 1296, 711, 1357, 746);//MARCAÇÃO 16 HORAS
-            graphics.DrawLine(penMarcadorHoraDiagonal, 1154, 853, 1189, 914);//MARCAÇÃO 17 HORAS
-            graphics.DrawLine(penMarcadorHoraDiagonal, 764, 853, 729, 914);//MARCAÇÃO 19 HORAS
-            graphics.DrawLine(penMarcadorHoraDiagonal, 622, 711, 561, 746);//MARCAÇÃO 20 HORAS
-            graphics.DrawLine(penMarcadorHoraDiagonal, 622, 321, 561, 286);//MARCAÇÃO 22 HORAS
-            graphics.DrawLine(penMarcadorHoraDiagonal, 764, 179, 729, 118);//MARCAÇÃO 23 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHora, 959, 56, 959, 126);//MARCAÇÃO 12 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHora, 1349, 516, 1419, 516);//MARCAÇÃO 15 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHora, 959, 906, 959, 976);//MARCAÇÃO 18 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHora, 499, 516, 569, 516);//MARCAÇÃO 21 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHoraDiagonal, 1154, 179, 1189, 118);//MARCAÇÃO 13 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHoraDiagonal, 1296, 321, 1357, 286);//MARCAÇÃO 14 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHoraDiagonal, 1296, 711, 1357, 746);//MARCAÇÃO 16 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHoraDiagonal, 1154, 853, 1189, 914);//MARCAÇÃO 17 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHoraDiagonal, 764, 853, 729, 914);//MARCAÇÃO 19 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHoraDiagonal, 622, 711, 561, 746);//MARCAÇÃO 20 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHoraDiagonal, 622, 321, 561, 286);//MARCAÇÃO 22 HORAS
+            offScreenGraphics.DrawLine(penMarcadorHoraDiagonal, 764, 179, 729, 118);//MARCAÇÃO 23 HORAS
             //
-            graphics.FillEllipse(brushOlhoBranco, xCenter - 200, 300, 180, 300);//olho esquerdo - parte branca
-            graphics.FillEllipse(brushOlhoBranco, xCenter + 20, 300, 180, 300);//olho direito - parte branca
+            offScreenGraphics.FillEllipse(brushOlhoBranco, xCenter - 200, 300, 180, 300);//olho esquerdo - parte branca
+            offScreenGraphics.FillEllipse(brushOlhoBranco, xCenter + 20, 300, 180, 300);//olho direito - parte branca
             //
             if (!eyeMove)
             {
-                graphics.FillEllipse(brushOlhoPreto, xCenter - 180, 320, 90, 150);//olho esquerdo - parte preta
-                graphics.FillEllipse(brushOlhoPreto, xCenter + 40, 320, 90, 150);//olho esquerdo - parte preta
+                offScreenGraphics.FillEllipse(brushOlhoPreto, xCenter - 180, 320, 90, 150);//olho esquerdo - parte preta
+                offScreenGraphics.FillEllipse(brushOlhoPreto, xCenter + 40, 320, 90, 150);//olho esquerdo - parte preta
                 eyeMove = true;
             }
             else
             {
-                graphics.FillEllipse(brushOlhoPreto, xCenter - 130, 320, 90, 150);//olho esquerdo - parte preta
-                graphics.FillEllipse(brushOlhoPreto, xCenter + 90, 320, 90, 150);//olho esquerdo - parte preta
+                offScreenGraphics.FillEllipse(brushOlhoPreto, xCenter - 130, 320, 90, 150);//olho esquerdo - parte preta
+                offScreenGraphics.FillEllipse(brushOlhoPreto, xCenter + 90, 320, 90, 150);//olho esquerdo - parte preta
                 eyeMove = false;
             }
             //
-            graphics.DrawLine(penS, xCenter, yCenter, ponteiroX, ponteiroY);
+            offScreenGraphics.DrawLine(penS, xCenter, yCenter, ponteiroX, ponteiroY);
             //
-            graphics.DrawLine(penM, xCenter, yCenter, ponteiroXM, ponteiroYM);
+            offScreenGraphics.DrawLine(penM, xCenter, yCenter, ponteiroXM, ponteiroYM);
             //
-            graphics.DrawLine(penH, xCenter, yCenter, hourX, hourY);
+            offScreenGraphics.DrawLine(penH, xCenter, yCenter, hourX, hourY);
+            //
+            using (var graphics = this.CreateGraphics())
+            {
+                // copia o bitmap auxiliar para a tela
+                graphics.DrawImage(offScreenBitmap1, 0, 0);
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Invalidate();
+            //Invalidate();
             //
             var dateTime = DateTime.Now;
             int segundoAtual = dateTime.Second;
@@ -122,10 +129,15 @@ namespace Relogio
             double thetaHour = (hourAtual / 12.0) * 2 * Math.PI - Math.PI / 2;
             hourX = Convert.ToInt32(xCenter + Lh * Math.Cos(thetaHour));
             hourY = Convert.ToInt32(yCenter + Lh * Math.Sin(thetaHour));
+            //
+            Draw();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            offScreenBitmap1 = new Bitmap(this.Width, this.Height);
+            offScreenGraphics = Graphics.FromImage(offScreenBitmap1);
+            //
             xCenter = (this.Width / 2) - 9;
             yCenter = (this.Height / 2) - 8;
             //
@@ -143,6 +155,11 @@ namespace Relogio
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             //timer1.Enabled = false;
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //Draw();
         }
     }
 }
