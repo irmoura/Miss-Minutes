@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Relogio
@@ -107,11 +102,11 @@ namespace Relogio
             //    eyeMove = false;
             //}
             //
-            DrawDiagonalLine(Color.Red, xCenter, yCenter, ponteiroX, ponteiroY, 5);
-            //
             DrawDiagonalLine(Color.Black, xCenter, yCenter, ponteiroXM, ponteiroYM, 15);
             //
             DrawDiagonalLine(Color.Black, xCenter, yCenter, hourX, hourY, 20);
+            //
+            DrawDiagonalLine(Color.Red, xCenter, yCenter, ponteiroX, ponteiroY, 5);
             //
             using (var graphics = this.CreateGraphics())
             {
